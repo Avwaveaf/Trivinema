@@ -181,6 +181,11 @@ extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
         tableView.dataSource      = self
         tableView.delegate        = self
         tableView.register(TNHomeSectionCell.self, forCellReuseIdentifier: TNHomeSectionCell.identifier)
+        // Add bottom padding
+        let footerView = UIView(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: 120))
+        footerView.backgroundColor  = .clear
+        tableView.tableFooterView   = footerView
+        tableView.separatorColor    = .clear
         
     }
     
@@ -193,8 +198,8 @@ extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 270
-        }
+        return 240
+    }
 
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let titleView = TNCollectionTitleView()
@@ -227,7 +232,7 @@ extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
         UIView.animate(withDuration: 0.8) {
             self.headerView.overviewSection.alpha = swipingDownAt ? 1 : 0
         }
-        
+         
         UIViewPropertyAnimator.runningPropertyAnimator(withDuration: 0.6, delay: 0) {
             self.headerViewTopConstraint?.constant = shouldSnapHeaderAt ? -labelHeight : 0
             self.view.layoutIfNeeded()
@@ -241,7 +246,7 @@ extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
                 appearance.configureWithOpaqueBackground()
                 appearance.backgroundColor     = .systemBackground
                 appearance.titleTextAttributes = [.foregroundColor: UIColor.label]
-
+                
                 self.navigationController?.navigationBar.standardAppearance     = appearance
                 self.navigationController?.navigationBar.scrollEdgeAppearance   = appearance
                 self.navigationController?.setNavigationBarHidden(false, animated: false)
