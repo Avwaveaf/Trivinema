@@ -7,6 +7,20 @@
 
 import UIKit
 
+enum HomeSection: Int, CaseIterable {
+    case nowPlayingMovies
+    case trendingSeries
+    case popularArtist
+
+    var title: String {
+        switch self {
+        case .nowPlayingMovies  : return "Now Playing Movies"
+        case .trendingSeries    : return "Trending TV Series"
+        case .popularArtist     : return "Popular Artists"
+        }
+    }
+}
+
 class HomeViewController: UIViewController {
 
     private let headerView = HomeHeaderView()
@@ -23,13 +37,13 @@ class HomeViewController: UIViewController {
         }
     }
     
-    let cellId = "cellId"
-    let tiles = [
-        "Star wars",
-        "Bonus Track",
-        "Despicable Me",
-        "Hangover 3"
-    ]
+    // Sections and tiles
+     let sections = HomeSection.allCases
+     let tiles: [[String]] = [
+         ["Star Wars", "Bonus Track", "Despicable Me", "Hangover 3"],
+         ["Oppenheimer", "Barbie", "Dune Part 2"],
+         ["Interstellar", "Inception", "The Dark Knight"]
+     ]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -104,28 +118,43 @@ extension HomeViewController {
 extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
     
     func setupTableView() {
-        tableView.dataSource        = self
-        tableView.delegate          = self
+        tableView.dataSource      = self
+        tableView.delegate        = self
+        tableView.register(TNHomeSectionCell.self, forCellReuseIdentifier: TNHomeSectionCell.identifier)
         
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: cellId)
-        tableView.tableFooterView   = UIView()
     }
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return tiles.count
+    func numberOfSections(in tableView: UITableView) -> Int {
+            return sections.count
+        }
+
+        func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+            return 1 // Only 1 horizontal list per section
+        }
+
+        func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+            return 270
+        }
+
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let titleView = TNCollectionTitleView()
+        titleView.set(title: sections[section].title) {
+            print("See all tapped for section \(section)")
+        }
+        return titleView
     }
-    
+
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 40
+    }
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell                = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath)
-        
-        cell.textLabel?.text    = tiles[indexPath.row]
-        cell.accessoryType      = .disclosureIndicator
-        
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: TNHomeSectionCell.identifier,for: indexPath) as? TNHomeSectionCell else {
+            return UITableViewCell()
+        }
+
+        cell.tilesSection = tiles[indexPath.section]
         return cell
-    }
-     
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 300
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
@@ -141,8 +170,15 @@ extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
         UIViewPropertyAnimator.runningPropertyAnimator(withDuration: 0.3, delay: 0) {
             self.headerViewTopConstraint?.constant = shouldSnapHeaderAt ? -labelHeight : 0
             if shouldSnapHeaderAt {
-                self.navigationController?.setNavigationBarHidden(false, animated: false)
                 self.title = "Explore"
+                let appearance = UINavigationBarAppearance()
+                appearance.configureWithOpaqueBackground()
+                appearance.backgroundColor     = .systemBackground
+                appearance.titleTextAttributes = [.foregroundColor: UIColor.label]
+
+                self.navigationController?.navigationBar.standardAppearance     = appearance
+                self.navigationController?.navigationBar.scrollEdgeAppearance   = appearance
+                self.navigationController?.setNavigationBarHidden(false, animated: false)
             } else {
                 self.navigationController?.setNavigationBarHidden(true, animated: true)
             }
