@@ -9,7 +9,7 @@ import UIKit
 
 class HomeHeaderTopOverviewSectionView: UIView {
     
-    private lazy var sectionTitle               = TNTitleLabel()
+    private lazy var sectionTitle               = TNTitleLabel(ofSize: 30)
     private lazy var sectionDescription         = TNBodyLabel()
     private lazy var genreLabel                 = TNSecondaryLabel()
     

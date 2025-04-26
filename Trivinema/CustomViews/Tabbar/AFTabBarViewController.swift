@@ -13,7 +13,7 @@ class AFTabBarViewController: UITabBarController {
         super.viewDidLoad()
         let appearance = UITabBarAppearance()
          appearance.configureWithDefaultBackground()
-        appearance.backgroundEffect = UIBlurEffect(style: .systemThickMaterial)
+        appearance.backgroundEffect = UIBlurEffect(style: .systemMaterialDark)
          appearance.backgroundColor = .clear
          
          tabBar.standardAppearance = appearance

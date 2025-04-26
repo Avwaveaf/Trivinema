@@ -38,15 +38,20 @@ class HomeViewController: UIViewController {
     }
     
     // Sections and tiles
-     let sections = HomeSection.allCases
-     let tiles: [[String]] = [
-         ["Star Wars", "Bonus Track", "Despicable Me", "Hangover 3"],
-         ["Oppenheimer", "Barbie", "Dune Part 2"],
-         ["Interstellar", "Inception", "The Dark Knight"]
-     ]
+    let sections = HomeSection.allCases
+    private var tiles: [[any OverviewPresentable]] = Array(repeating: [], count: HomeSection.allCases.count)
+    var height: CGFloat = 0.0
+    let screenHeight = UIScreen.main.bounds.height
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        if screenHeight <= 667 { // iPhone SE (1st, 2nd gen) and similar
+            height = 300
+        } else if screenHeight <= 736 { // iPhone 8 Plus
+            height = 380
+        } else {
+            height = 420
+        }
         setupTableView()
         configureStyles()
         configureLayout()
@@ -69,18 +74,52 @@ class HomeViewController: UIViewController {
 extension HomeViewController {
     private func getOverviewData() {
         showLoadingView()
+        
+        let fetchGroup = DispatchGroup()
+        
+        // Fetch Movies
+        fetchGroup.enter()
         NetworkManager.shared.getNowPlaying(page: 1) { [weak self] result in
-            guard let self = self else { return }
+            guard let self = self else {
+                fetchGroup.leave()
+                return
+            }
             DispatchQueue.main.async {
-                self.hideLoadingView()
-                
                 switch result {
                 case .success(let response):
                     self.movies.append(contentsOf: response.results)
+                    self.tiles[HomeSection.nowPlayingMovies.rawValue] = Array(response.results.prefix(10))
                 case .failure(let error):
                     print(error.rawValue)
                 }
+                fetchGroup.leave()  // Leave the group inside the closure after the data handling
             }
+        }
+
+        // Fetch Trending Series
+        fetchGroup.enter()
+        NetworkManager.shared.getTrendingSeries(page: 1) { [weak self] result in
+            guard let self = self else {
+                fetchGroup.leave()
+                return
+            }
+            DispatchQueue.main.async {
+                switch result {
+                case .success(let response):
+                    self.tiles[HomeSection.trendingSeries.rawValue] = Array(response.results.prefix(10))
+                case .failure(let error):
+                    print(error.rawValue)
+                }
+                fetchGroup.leave()  // Leave the group inside the closure after the data handling
+            }
+        }
+
+        
+        // Finally
+        fetchGroup.notify(queue: .main) { [weak self] in
+            guard let self = self else {return}
+            self.hideLoadingView()
+            self.tableView.reloadData()
         }
     }
 }
@@ -103,7 +142,7 @@ extension HomeViewController {
             headerViewTopConstraint!,
             headerView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             headerView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            headerView.heightAnchor.constraint(equalToConstant: 420),
+            headerView.heightAnchor.constraint(equalToConstant: height),
             
             tableView.topAnchor.constraint(equalTo: headerView.bottomAnchor),
             tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
@@ -154,6 +193,7 @@ extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
         }
 
         cell.tilesSection = tiles[indexPath.section]
+        
         return cell
     }
     

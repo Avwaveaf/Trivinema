@@ -7,13 +7,15 @@
 
 import Foundation
 
-struct MoviewOverview: Codable, Hashable{
+struct MoviewOverview: Codable, Hashable, OverviewPresentable{
     let adult: Bool
     let backdropPath: String?
     let genreIds: [Int]
     let id: Int
     let originalTitle: String
+    let title: String
     let overview: String
     let popularity: Double
     let posterPath: String?
+    let voteAverage: Double
 }

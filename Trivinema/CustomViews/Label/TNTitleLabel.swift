@@ -18,8 +18,13 @@ class TNTitleLabel: UILabel {
         fatalError("init(coder:) has not been implemented")
     }
     
+    init(ofSize: CGFloat){
+        super.init(frame: .zero)
+        self.font = UIFont.systemFont(ofSize: ofSize, weight: .bold)
+        configure()
+    }
+    
     private func configure(){
-        font                = UIFont.preferredFont(forTextStyle: .largeTitle)
         numberOfLines       = 0
         lineBreakMode       = .byWordWrapping
         translatesAutoresizingMaskIntoConstraints = false

@@ -53,7 +53,7 @@ class AFIconButton: UIButton {
         case .outlined:
             backgroundColor   = .clear
             layer.borderWidth = 1
-            layer.borderColor = UIColor.label.cgColor
+            layer.borderColor = UIColor.white.cgColor
         case .plain:
             backgroundColor   = .clear
             layer.borderWidth = 0
