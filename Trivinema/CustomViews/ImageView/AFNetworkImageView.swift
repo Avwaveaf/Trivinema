@@ -9,8 +9,8 @@ import UIKit
 
 class AFNetworkImageView: UIImageView {
     
-    let placeholderImage   = UIImage(named: "ImagePlaceholder")!
-    private let cache = NetworkManager.shared.cache
+    let placeholderImage    = UIImage(named: "ImagePlaceholder")!
+    private let cache       = NetworkManager.shared.cache
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -22,9 +22,9 @@ class AFNetworkImageView: UIImageView {
     }
     
     private func configure() {
-        contentMode = .scaleToFill
-        clipsToBounds = true
-        image = placeholderImage
+        contentMode     = .scaleToFill
+        clipsToBounds   = true
+        image           = placeholderImage
         translatesAutoresizingMaskIntoConstraints = false
     }
     

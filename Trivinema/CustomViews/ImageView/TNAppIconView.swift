@@ -11,7 +11,7 @@ class TNAppIconView: UIView {
     
     private let imageView = UIImageView()
     
-    init(image: UIImage?, cornerRadius: CGFloat = 20) {
+    init(image: UIImage?, cornerRadius: CGFloat = 8) {
         super.init(frame: .zero)
         imageView.image = image
         setupView(cornerRadius: cornerRadius)

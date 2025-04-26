@@ -10,21 +10,21 @@ import UIKit
 class HomeHeaderView: UIView {
     
     private lazy var imageCover: AFNetworkImageView = {
-        let imageView = AFNetworkImageView(frame: .zero)
-        imageView.contentMode = .scaleAspectFill
+        let imageView           = AFNetworkImageView(frame: .zero)
+        imageView.contentMode   = .scaleAspectFill
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
     
     private lazy var gradientOverlay: UIView = {
-        let view = UIView()
+        let view             = UIView()
         view.backgroundColor = .clear
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
     
-    private lazy var appIconView = TNAppIconView(image: UIImage(named: "TrivinemaDark"))
-    lazy var overviewSection = HomeHeaderTopOverviewSectionView()
+    private lazy var appIconView    = TNAppIconView(image: UIImage(named: "TrivinemaDark"))
+    lazy var overviewSection        = HomeHeaderTopOverviewSectionView()
     
     private var overview: MoviewOverview?
     private var gradientLayer: CAGradientLayer?
@@ -53,13 +53,13 @@ class HomeHeaderView: UIView {
         super.layoutSubviews()
         
         if gradientLayer == nil {
-            let layer = CAGradientLayer()
-            layer.colors = [UIColor.black.cgColor, UIColor.clear.cgColor]
-            layer.startPoint = CGPoint(x: 0.5, y: 1.0)
-            layer.endPoint = CGPoint(x: 0.5, y: 0.0)
-            layer.frame = gradientOverlay.bounds
+            let layer           = CAGradientLayer()
+            layer.colors        = [UIColor.black.cgColor, UIColor.clear.cgColor]
+            layer.startPoint    = CGPoint(x: 0.5, y: 1.0)
+            layer.endPoint      = CGPoint(x: 0.5, y: 0.0)
+            layer.frame         = gradientOverlay.bounds
             gradientOverlay.layer.insertSublayer(layer, at: 0)
-            gradientLayer = layer
+            gradientLayer       = layer
         } else {
             gradientLayer?.frame = gradientOverlay.bounds
         }

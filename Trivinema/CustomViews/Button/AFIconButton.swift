@@ -9,7 +9,7 @@ enum AFIconButtonStyle {
 class AFIconButton: UIButton {
 
     private var currentStyle: AFIconButtonStyle = .plain
-    private let spacing: CGFloat = 8  // 👈 control spacing between icon and title
+    private let spacing: CGFloat                = 8
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -34,12 +34,12 @@ class AFIconButton: UIButton {
     }
     
     private func configureBase() {
-        tintColor = .label
+        tintColor               = .label
         setTitleColor(.label, for: .normal)
-        titleLabel?.font = UIFont.systemFont(ofSize: 14, weight: .semibold)
-        contentEdgeInsets = UIEdgeInsets(top: 8, left: 12, bottom: 8, right: 12)
-        layer.cornerRadius = 12
-        clipsToBounds = true
+        titleLabel?.font        = UIFont.systemFont(ofSize: 14, weight: .semibold)
+        contentEdgeInsets       = UIEdgeInsets(top: 8, left: 12, bottom: 8, right: 12)
+        layer.cornerRadius      = 12
+        clipsToBounds           = true
         translatesAutoresizingMaskIntoConstraints = false
         semanticContentAttribute = .forceLeftToRight
     }
@@ -47,29 +47,26 @@ class AFIconButton: UIButton {
     private func applyStyle(_ style: AFIconButtonStyle) {
         switch style {
         case .filled:
-            backgroundColor = UIColor.label.withAlphaComponent(0.1)
+            backgroundColor   = UIColor.label.withAlphaComponent(0.1)
             layer.borderWidth = 0
             layer.borderColor = nil
         case .outlined:
-            backgroundColor = .clear
+            backgroundColor   = .clear
             layer.borderWidth = 1
             layer.borderColor = UIColor.label.cgColor
         case .plain:
-            backgroundColor = .clear
+            backgroundColor   = .clear
             layer.borderWidth = 0
             layer.borderColor = nil
         }
     }
     
     private func alignTextAndImage() {
-        guard let imageView = imageView, let titleLabel = titleLabel else { return }
-        
         // Reset any previous insets
         imageEdgeInsets = .zero
         titleEdgeInsets = .zero
         
         // Apply spacing manually
-        let imageWidth = imageView.frame.width
         titleEdgeInsets = UIEdgeInsets(
             top: 0,
             left: spacing,  // 👈 push title away from image

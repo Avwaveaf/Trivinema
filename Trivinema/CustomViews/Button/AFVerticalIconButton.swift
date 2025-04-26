@@ -9,9 +9,9 @@ import UIKit
 
 class AFVerticalIconButton: UIView {
     
-    private let imageView = UIImageView()
-    private let titleLabel = UILabel()
-    private let tapGesture = UITapGestureRecognizer()
+    private let imageView       = UIImageView()
+    private let titleLabel      = UILabel()
+    private let tapGesture      = UITapGestureRecognizer()
     private var currentStyle: AFIconButtonStyle = .plain
     
     var onTap: (() -> Void)?
@@ -28,12 +28,12 @@ class AFVerticalIconButton: UIView {
     }
     
     private func setupViews() {
-        imageView.contentMode = .scaleAspectFit
-        imageView.tintColor = .label
-        titleLabel.font = UIFont.systemFont(ofSize: 14, weight: .semibold)
-        titleLabel.textAlignment = .center
-        titleLabel.numberOfLines = 1
-        titleLabel.textColor = .label
+        imageView.contentMode       = .scaleAspectFit
+        imageView.tintColor         = .label
+        titleLabel.font             = UIFont.systemFont(ofSize: 14, weight: .semibold)
+        titleLabel.textAlignment    = .center
+        titleLabel.numberOfLines    = 1
+        titleLabel.textColor        = .label
         
         let stack = UIStackView(arrangedSubviews: [imageView, titleLabel])
         stack.axis = .vertical
@@ -53,7 +53,7 @@ class AFVerticalIconButton: UIView {
         tapGesture.addTarget(self, action: #selector(handleTap))
         
         layer.cornerRadius = 12
-        clipsToBounds = true
+        clipsToBounds   = true
         backgroundColor = UIColor.label.withAlphaComponent(0.05)
     }
     
@@ -66,15 +66,15 @@ class AFVerticalIconButton: UIView {
     private func applyStyle(_ style: AFIconButtonStyle) {
           switch style {
           case .plain:
-              backgroundColor = .clear
+              backgroundColor   = .clear
               layer.borderWidth = 0
               layer.borderColor = nil
           case .filled:
-              backgroundColor = UIColor.label.withAlphaComponent(0.05)
+              backgroundColor   = UIColor.label.withAlphaComponent(0.05)
               layer.borderWidth = 0
               layer.borderColor = nil
           case .outlined:
-              backgroundColor = .clear
+              backgroundColor   = .clear
               layer.borderWidth = 1
               layer.borderColor = UIColor.label.cgColor
           }

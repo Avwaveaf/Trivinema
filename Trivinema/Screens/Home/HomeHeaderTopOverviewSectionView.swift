@@ -9,31 +9,31 @@ import UIKit
 
 class HomeHeaderTopOverviewSectionView: UIView {
     
-    private lazy var sectionTitle = TNTitleLabel()
-    private lazy var sectionDescription = TNBodyLabel()
-    private lazy var genreLabel = TNSecondaryLabel()
+    private lazy var sectionTitle               = TNTitleLabel()
+    private lazy var sectionDescription         = TNBodyLabel()
+    private lazy var genreLabel                 = TNSecondaryLabel()
     
-    private lazy var detailButton = AFVerticalIconButton(icon: .info, title: "Detail")
-    private lazy var addToListButton = AFVerticalIconButton(icon: .add, title: "Add to list")
-    private lazy var playButton: AFIconButton = {
+    private lazy var detailButton               = AFVerticalIconButton(icon: .info, title: "Detail")
+    private lazy var addToListButton            = AFVerticalIconButton(icon: .add, title: "Add to list")
+    private lazy var playButton: AFIconButton   = {
         let button = AFIconButton()
         button.set(title: "Play", icon: .play, style: .outlined)
         return button
     }()
     
     private lazy var actionButtonStack: UIStackView = {
-        let stack = UIStackView(arrangedSubviews: [addToListButton, playButton, detailButton])
-        stack.axis = .horizontal
-        stack.alignment = .center
-        stack.distribution = .fillEqually
-        stack.spacing = 16
+        let stack           = UIStackView(arrangedSubviews: [addToListButton, playButton, detailButton])
+        stack.axis          = .horizontal
+        stack.alignment     = .center
+        stack.distribution  = .fillEqually
+        stack.spacing       = 16
         return stack
     }()
     
     private lazy var contentStack: UIStackView = {
-        let stack = UIStackView(arrangedSubviews: [sectionTitle, genreLabel, sectionDescription, actionButtonStack])
-        stack.axis = .vertical
-        stack.spacing = 8
+        let stack           = UIStackView(arrangedSubviews: [sectionTitle, genreLabel, sectionDescription, actionButtonStack])
+        stack.axis          = .vertical
+        stack.spacing       = 8
         stack.translatesAutoresizingMaskIntoConstraints = false
         return stack
     }()
@@ -50,10 +50,10 @@ class HomeHeaderTopOverviewSectionView: UIView {
     }
     
     func configure(with overview: MoviewOverview) {
-        self.overview = overview
-        sectionTitle.text = overview.originalTitle
+        self.overview           = overview
+        sectionTitle.text       = overview.originalTitle
         sectionDescription.text = overview.overview
-        genreLabel.text = overview.genreIds.map { MovieGenre.from(id: $0) }.joined(separator: " ・ ")
+        genreLabel.text         = overview.genreIds.map { MovieGenre.from(id: $0) }.joined(separator: " ・ ")
     }
     
     private func configureView() {

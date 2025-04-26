@@ -104,11 +104,11 @@ extension HomeViewController {
 extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
     
     func setupTableView() {
-        tableView.dataSource = self
-        tableView.delegate = self
+        tableView.dataSource        = self
+        tableView.delegate          = self
         
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: cellId)
-        tableView.tableFooterView = UIView()
+        tableView.tableFooterView   = UIView()
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -116,10 +116,10 @@ extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath)
+        let cell                = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath)
         
-        cell.textLabel?.text = tiles[indexPath.row]
-        cell.accessoryType = .disclosureIndicator
+        cell.textLabel?.text    = tiles[indexPath.row]
+        cell.accessoryType      = .disclosureIndicator
         
         return cell
     }
@@ -129,10 +129,10 @@ extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        let y = scrollView.contentOffset.y
-        let swipingDownAt = y <= 0
-        let shouldSnapHeaderAt = y > 15
-        let labelHeight = headerView.overviewSection.frame.height + 16 * 10
+        let y                   = scrollView.contentOffset.y
+        let swipingDownAt       = y <= 0
+        let shouldSnapHeaderAt  = y > 15
+        let labelHeight         = headerView.overviewSection.frame.height + 16 * 10
         
         UIView.animate(withDuration: 0.3) {
             self.headerView.overviewSection.alpha = swipingDownAt ? 1 : 0

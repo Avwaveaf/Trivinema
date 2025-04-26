@@ -30,9 +30,9 @@ class AFSfSymbolImageView: UIImageView {
     init(of symbol: SFSymbols, withColor color: UIColor? = .systemGreen){
         super.init(frame: .zero)
         
-        tintColor = color
-        let imgConfig = UIImage.SymbolConfiguration(scale: .large)
-        image = UIImage(systemName: symbol.rawValue, withConfiguration: imgConfig)
+        tintColor       = color
+        let imgConfig   = UIImage.SymbolConfiguration(scale: .large)
+        image           = UIImage(systemName: symbol.rawValue, withConfiguration: imgConfig)
         config()
     }
     
@@ -52,14 +52,14 @@ class AFSfSymbolImageView: UIImageView {
 extension AFSfSymbolImageView {
     
     static func makeImage(systemName: String = "exclamationmark.triangle.fill", color: UIColor = .label, scale: UIImage.SymbolScale = .large) -> UIImage? {
-        let config = UIImage.SymbolConfiguration(scale: scale)
-        let image = UIImage(systemName: systemName, withConfiguration: config)?.withTintColor(color, renderingMode: .alwaysOriginal)
+        let config  = UIImage.SymbolConfiguration(scale: scale)
+        let image   = UIImage(systemName: systemName, withConfiguration: config)?.withTintColor(color, renderingMode: .alwaysOriginal)
         return image
     }
 
     static func makeImage(symbol: SFSymbols, scale: UIImage.SymbolScale = .medium) -> UIImage? {
-        let config = UIImage.SymbolConfiguration(scale: scale)
-        let image = UIImage(systemName: symbol.rawValue, withConfiguration: config)
+        let config  = UIImage.SymbolConfiguration(scale: scale)
+        let image   = UIImage(systemName: symbol.rawValue, withConfiguration: config)
         return image
     }
 }
