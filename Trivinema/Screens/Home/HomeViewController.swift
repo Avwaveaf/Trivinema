@@ -113,6 +113,25 @@ extension HomeViewController {
                 fetchGroup.leave()  // Leave the group inside the closure after the data handling
             }
         }
+        
+        // Fetch Popular Artist
+        fetchGroup.enter()
+        NetworkManager.shared.getPopularPerson(page: 1) { [weak self] result in
+            guard let self = self else {
+                fetchGroup.leave()
+                return
+            }
+            
+            DispatchQueue.main.async {
+                switch result {
+                case .success(let response):
+                    self.tiles[HomeSection.popularArtist.rawValue] = Array(response.results.prefix(10))
+                case .failure(let error):
+                    print(error.rawValue)
+                }
+                fetchGroup.leave()
+            }
+        }
 
         
         // Finally
@@ -130,6 +149,8 @@ extension HomeViewController {
     private func configureStyles() {
         headerView.translatesAutoresizingMaskIntoConstraints = false
         tableView.translatesAutoresizingMaskIntoConstraints = false
+        tableView.bounces = false
+        tableView.alwaysBounceVertical = false
     }
     
     private func configureLayout() {
@@ -164,15 +185,15 @@ extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
-            return sections.count
-        }
+        return sections.count
+    }
 
-        func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-            return 1 // Only 1 horizontal list per section
-        }
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 1 // Only 1 horizontal list per section
+    }
 
-        func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-            return 270
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 270
         }
 
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
@@ -200,15 +221,20 @@ extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let y                   = scrollView.contentOffset.y
         let swipingDownAt       = y <= 0
-        let shouldSnapHeaderAt  = y > 15
-        let labelHeight         = headerView.overviewSection.frame.height + 16 * 10
+        let shouldSnapHeaderAt  = y > 8
+        let labelHeight         = headerView.overviewSection.frame.height + 16 + view.safeAreaInsets.top
         
-        UIView.animate(withDuration: 0.3) {
+        UIView.animate(withDuration: 0.8) {
             self.headerView.overviewSection.alpha = swipingDownAt ? 1 : 0
         }
         
-        UIViewPropertyAnimator.runningPropertyAnimator(withDuration: 0.3, delay: 0) {
+        UIViewPropertyAnimator.runningPropertyAnimator(withDuration: 0.6, delay: 0) {
             self.headerViewTopConstraint?.constant = shouldSnapHeaderAt ? -labelHeight : 0
+            self.view.layoutIfNeeded()
+        }
+  
+        
+        UIViewPropertyAnimator.runningPropertyAnimator(withDuration: 0.8, delay: 0) {
             if shouldSnapHeaderAt {
                 self.title = "Explore"
                 let appearance = UINavigationBarAppearance()
@@ -222,7 +248,7 @@ extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
             } else {
                 self.navigationController?.setNavigationBarHidden(true, animated: true)
             }
-            self.view.layoutIfNeeded()
+            
         }
     }
 }
