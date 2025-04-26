@@ -6,8 +6,13 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		8B590CF52DBCD16E009C5A35 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 8B590CF42DBCD16A009C5A35 /* .gitignore */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
 		8B590C8B2DBB61A0009C5A35 /* Trivinema.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Trivinema.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		8B590CF42DBCD16A009C5A35 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -47,6 +52,7 @@
 			children = (
 				8B590C8D2DBB61A0009C5A35 /* Trivinema */,
 				8B590C8C2DBB61A0009C5A35 /* Products */,
+				8B590CF42DBCD16A009C5A35 /* .gitignore */,
 			);
 			sourceTree = "<group>";
 		};
@@ -122,6 +128,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8B590CF52DBCD16E009C5A35 /* .gitignore in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
