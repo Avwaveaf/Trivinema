@@ -205,7 +205,14 @@ extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let titleView = TNCollectionTitleView()
         titleView.set(title: sections[section].title) {
-            print("See all tapped for section \(section)")
+            switch section {
+            case 0:
+                if let tabBarController = self.tabBarController {
+                    tabBarController.selectedIndex = 1
+                }
+            default:
+                break
+            }
         }
         return titleView
     }
