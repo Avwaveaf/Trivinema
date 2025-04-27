@@ -7,6 +7,12 @@
 
 import Foundation
 
+enum MovieCategory {
+    case nowPlaying
+    case popular
+    case upcoming
+}
+
 enum MovieGenre: Int, CaseIterable {
     case action = 28
     case adventure = 12

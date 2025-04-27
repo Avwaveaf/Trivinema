@@ -186,6 +186,7 @@ extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
         footerView.backgroundColor  = .clear
         tableView.tableFooterView   = footerView
         tableView.separatorColor    = .clear
+        tableView.decelerationRate  = .fast
         
     }
     
@@ -241,7 +242,7 @@ extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
         
         UIViewPropertyAnimator.runningPropertyAnimator(withDuration: 0.8, delay: 0) {
             if shouldSnapHeaderAt {
-                self.title = "Explore"
+                self.navigationItem.title = "Explore"
                 let appearance = UINavigationBarAppearance()
                 appearance.configureWithOpaqueBackground()
                 appearance.backgroundColor     = .systemBackground

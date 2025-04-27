@@ -8,7 +8,9 @@
 import UIKit
 
 enum OverviewKey: String{
-    case movieOverview     = "moviewOverview"
+    case movieOverviewNP   = "moviewOverviewNP"
+    case movieOverviewPP   = "moviewOverviewPP"
+    case movieOverviewUP   = "moviewOverviewUP"
     case tvSeriesOverview  = "tvSeriesOverview"
     case artistsOverview   = "artistsOverview"
 }
@@ -26,74 +28,75 @@ class NetworkManager {
     // MARK: - Generic GET Request Method
     
     func performGETRequest<T: Codable>(urlString: String, key: OverviewKey, completion: @escaping (Result<T, AFError>) -> Void) {
-        
-        // MARK: -Ceheck stale cache-
-        if isNewDay(for: key){
-            clearCache(for: key)
-        }
-        
-        // MARK: -Handle cache [RETRIEVE]-
-        if let cachedData: T = getCachedOverviewFromDisk(for: urlString) {
-            /// uncomment Debug
-            //print("using cache for key \(key.rawValue)")
-            completion(.success(cachedData))
-            return
-        }
-        
-        guard let url = URL(string: urlString) else {
-            completion(.failure(.invalidResponse))
-            return
-        }
-        
-        var request = URLRequest(url: url)
-        request.httpMethod = "GET"
-        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        request.setValue("Bearer \(apiKey)", forHTTPHeaderField: "Authorization")
-        
-        #if DEBUG
-        NetworkLogger.log(request: request)
-        #endif
-        
-        let task = URLSession.shared.dataTask(with: request) { data, response, error in
-            #if DEBUG
-            NetworkLogger.log(response: response, data: data)
-            #endif
+        DispatchQueue.global(qos: .background).async{
+            // MARK: -Ceheck stale cache-
+            if self.isNewDay(for: key){
+                self.clearCache(for: key)
+            }
             
-            if let _ = error {
-                completion(.failure(.noConnection))
+            // MARK: -Handle cache [RETRIEVE]-
+            if let cachedData: T = self.getCachedOverviewFromDisk(for: urlString) {
+                /// uncomment Debug
+                //print("using cache for key \(key.rawValue)")
+                completion(.success(cachedData))
                 return
             }
             
-            guard let httpResponse = response as? HTTPURLResponse else {
+            guard let url = URL(string: urlString) else {
                 completion(.failure(.invalidResponse))
                 return
             }
             
-            if let error = AFError.from(statusCode: httpResponse.statusCode) {
-                completion(.failure(error))
-                return
+            var request = URLRequest(url: url)
+            request.httpMethod = "GET"
+            request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+            request.setValue("Bearer \(self.apiKey)", forHTTPHeaderField: "Authorization")
+            
+            #if DEBUG
+            NetworkLogger.log(request: request)
+            #endif
+            
+            let task = URLSession.shared.dataTask(with: request) { data, response, error in
+                #if DEBUG
+                NetworkLogger.log(response: response, data: data)
+                #endif
+                
+                if let _ = error {
+                    completion(.failure(.noConnection))
+                    return
+                }
+                
+                guard let httpResponse = response as? HTTPURLResponse else {
+                    completion(.failure(.invalidResponse))
+                    return
+                }
+                
+                if let error = AFError.from(statusCode: httpResponse.statusCode) {
+                    completion(.failure(error))
+                    return
+                }
+                
+                guard let data = data else {
+                    completion(.failure(.emptyDataOrJSON))
+                    return
+                }
+                
+                do {
+                    let decoder = JSONDecoder()
+                    decoder.keyDecodingStrategy = .convertFromSnakeCase
+                    let decoded = try decoder.decode(T.self, from: data)
+                    
+                    // MARK: -Handle Cache [SAVE]-
+                    self.cacheOverviewToDisk(for: key.rawValue, overviewData: decoded)
+                    
+                    completion(.success(decoded))
+                } catch {
+                    completion(.failure(.failRequest))
+                }
             }
             
-            guard let data = data else {
-                completion(.failure(.emptyDataOrJSON))
-                return
-            }
-            
-            do {
-                let decoder = JSONDecoder()
-                decoder.keyDecodingStrategy = .convertFromSnakeCase
-                let decoded = try decoder.decode(T.self, from: data)
-                
-                // MARK: -Handle Cache [SAVE]-
-                self.cacheOverviewToDisk(for: key.rawValue, overviewData: decoded)
-                
-                completion(.success(decoded))
-            } catch {
-                completion(.failure(.failRequest))
-            }
+            task.resume()
         }
-        
-        task.resume()
     }
     
     
