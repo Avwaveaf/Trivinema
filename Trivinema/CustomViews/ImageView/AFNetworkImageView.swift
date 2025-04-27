@@ -52,18 +52,17 @@ class AFNetworkImageView: UIImageView {
                 error == nil,
                 let data = data,
                 let response = response as? HTTPURLResponse,
-                response.statusCode == 200
+                response.statusCode == 200,
+                let downloadedImage = UIImage(data: data)
             else { return }
             
-            if let cgDecodedImage = self.decodeImage(from: data) {
-                self.cache.setObject(cgDecodedImage, forKey: cacheKey)
-                
-                DispatchQueue.main.async {
-                    if self.currentURLString == urlString {
-                        self.image = cgDecodedImage
-                    }
-                }
-            }
+            self.cache.setObject(downloadedImage, forKey: cacheKey)
+            
+            DispatchQueue.main.async {
+                  if self.currentURLString == urlString {
+                      self.image = downloadedImage
+                  }
+              }
         }.resume()
     }
 }

@@ -9,6 +9,8 @@ import UIKit
 
 class MoviesViewController: UIViewController {
 
+    private let tableView       = UITableView()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemBrown

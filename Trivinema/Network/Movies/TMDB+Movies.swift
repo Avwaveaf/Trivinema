@@ -10,6 +10,6 @@ import Foundation
 extension NetworkManager {
     func getNowPlaying(page: Int, completed: @escaping (Result<MovieResponse, AFError>) -> Void){
         let endpoint = "\(baseUrl)/movie/now_playing?language=en-US&page=\(page)"
-        performGETRequest(urlString: endpoint, completion: completed)
+        performGETRequest(urlString: endpoint, key: .movieOverview, completion: completed)
     }
 }
