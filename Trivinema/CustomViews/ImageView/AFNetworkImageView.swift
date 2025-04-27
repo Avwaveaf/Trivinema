@@ -8,7 +8,7 @@
 import UIKit
 
 class AFNetworkImageView: UIImageView {
-    
+    private var currentURLString: String?
     let placeholderImage    = UIImage(named: "ImagePlaceholder")!
     private let cache       = NetworkManager.shared.cache
     
@@ -28,7 +28,15 @@ class AFNetworkImageView: UIImageView {
         translatesAutoresizingMaskIntoConstraints = false
     }
     
+    func decodeImage(from data: Data) -> UIImage? {
+        guard let imageSource = CGImageSourceCreateWithData(data as CFData, nil) else { return nil }
+        guard let cgImage = CGImageSourceCreateImageAtIndex(imageSource, 0, nil) else { return nil }
+        return UIImage(cgImage: cgImage)
+    }
+    
     func load(from urlString: String) {
+        currentURLString = urlString
+        image = placeholderImage
         let cacheKey = NSString(string: urlString)
         
         if let cachedImage = cache.object(forKey: cacheKey) {
@@ -44,14 +52,17 @@ class AFNetworkImageView: UIImageView {
                 error == nil,
                 let data = data,
                 let response = response as? HTTPURLResponse,
-                response.statusCode == 200,
-                let downloadedImage = UIImage(data: data)
+                response.statusCode == 200
             else { return }
             
-            self.cache.setObject(downloadedImage, forKey: cacheKey)
-            
-            DispatchQueue.main.async {
-                self.image = downloadedImage
+            if let cgDecodedImage = self.decodeImage(from: data) {
+                self.cache.setObject(cgDecodedImage, forKey: cacheKey)
+                
+                DispatchQueue.main.async {
+                    if self.currentURLString == urlString {
+                        self.image = cgDecodedImage
+                    }
+                }
             }
         }.resume()
     }
