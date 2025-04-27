@@ -17,11 +17,13 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     ) {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         
-        window = UIWindow(frame: windowScene.coordinateSpace.bounds)
+        window = UIWindow(windowScene: windowScene)
         window?.overrideUserInterfaceStyle = .dark
-        window?.windowScene                = windowScene
-        window?.rootViewController         = AFTabBarViewController()
         window?.makeKeyAndVisible()
-    }   
+        
+        // Set the splash screen as the root view controller immediately
+        let splash = SplashViewController()
+        window?.rootViewController = splash
+    }
 }
 
