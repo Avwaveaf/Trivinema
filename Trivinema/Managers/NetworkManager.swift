@@ -8,11 +8,13 @@
 import UIKit
 
 enum OverviewKey: String{
-    case movieOverviewNP   = "moviewOverviewNP"
-    case movieOverviewPP   = "moviewOverviewPP"
-    case movieOverviewUP   = "moviewOverviewUP"
-    case tvSeriesOverview  = "tvSeriesOverview"
-    case artistsOverview   = "artistsOverview"
+    case movieOverviewNP        = "moviewOverviewNP"
+    case movieOverviewPP        = "moviewOverviewPP"
+    case movieOverviewUP        = "moviewOverviewUP"
+    case tvSeriesOverviewPP     = "tvSeriesOverviewPP"
+    case tvSeriesOverviewAT     = "tvSeriesOverviewAT"
+    case tvSeriesOverviewTR     = "tvSeriesOverviewTR"
+    case artistsOverview        = "artistsOverview"
 }
 
 class NetworkManager {
