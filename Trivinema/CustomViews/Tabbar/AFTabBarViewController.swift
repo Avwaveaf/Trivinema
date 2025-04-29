@@ -55,9 +55,9 @@ class AFTabBarViewController: UITabBarController {
     }
     
     private func createActorsNavController() -> UINavigationController{
-        let actorViewController        = ActorsViewController()
+        let actorViewController        = MediaViewController(provider: ArtistsProvider())
         let icon                       = AFSfSymbolImageView.makeImage(symbol: .actor)
-        actorViewController.tabBarItem = UITabBarItem(title: "Actors", image: icon, tag: 3)
+        actorViewController.tabBarItem = UITabBarItem(title: "Artists", image: icon, tag: 3)
         
         return UINavigationController(rootViewController: actorViewController)
     }
