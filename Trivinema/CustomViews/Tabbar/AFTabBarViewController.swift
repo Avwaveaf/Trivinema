@@ -38,7 +38,7 @@ class AFTabBarViewController: UITabBarController {
     }
 
     private func createMoviesNavController() -> UINavigationController {
-        let moviesViewController        = MoviesViewController()
+        let moviesViewController        = MediaViewController(provider: MovieProvider())
         let icon                        = AFSfSymbolImageView.makeImage(symbol: .movies)
         moviesViewController.tabBarItem = UITabBarItem(title: "Movies", image: icon, tag: 1)
         
@@ -47,7 +47,7 @@ class AFTabBarViewController: UITabBarController {
     }
     
     private func createTVNavController() -> UINavigationController {
-        let tvViewController         = TvViewController()
+        let tvViewController         = MediaViewController(provider: TvSeriesProvider())
         let icon                     = AFSfSymbolImageView.makeImage(symbol: .tv)
         tvViewController.tabBarItem  = UITabBarItem(title: "Series", image: icon, tag: 2)
         

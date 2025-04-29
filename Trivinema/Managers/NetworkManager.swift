@@ -166,18 +166,22 @@ extension NetworkManager{
     }
     
     // Helper: clear cache
-    private func clearCache(for key: OverviewKey){
-        // Clear JSON Cache
-         let jsonFileURL    = getCacheFileURL(for: key.rawValue)
-         do {
-             try FileManager.default.removeItem(at: jsonFileURL)
-         } catch {
-             print("Failed to clear cache for \(key.rawValue): \(error.localizedDescription)")
-         }
-
-         // Restart cache date for JSON cache
-         UserDefaults.standard.setValue(Date(), forKey: "\(key.rawValue)_cache_date")
-     }
+    private func clearCache(for key: OverviewKey) {
+        let jsonFileURL = getCacheFileURL(for: key.rawValue)
+        let fileManager = FileManager.default
+        
+        if fileManager.fileExists(atPath: jsonFileURL.path) {
+            do {
+                try fileManager.removeItem(at: jsonFileURL)
+            } catch {
+                print("Failed to clear cache for \(key.rawValue): \(error.localizedDescription)")
+            }
+        } else {
+            print("Cache file for \(key.rawValue) does not exist. No need to remove.")
+        }
+        
+        UserDefaults.standard.setValue(Date(), forKey: "\(key.rawValue)_cache_date")
+    }
 }
 
 

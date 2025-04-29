@@ -7,10 +7,18 @@
 
 import Foundation
 
-enum MovieCategory {
+enum MovieCategory: MediaCategory {
     case nowPlaying
     case popular
     case upcoming
+    
+    var title: String{
+        switch self {
+        case .nowPlaying: return "Now Playing"
+        case .popular: return "Popular"
+        case .upcoming: return "Upcoming"
+        }
+    }
 }
 
 enum MovieGenre: Int, CaseIterable {
