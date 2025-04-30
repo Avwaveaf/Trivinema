@@ -24,6 +24,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Set the splash screen as the root view controller immediately
         let splash = SplashViewController()
         window?.rootViewController = splash
+        UINavigationBar.appearance().tintColor = .label
     }
 }
 

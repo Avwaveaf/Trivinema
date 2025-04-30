@@ -222,9 +222,11 @@ extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
         }
 
         cell.tilesSection = tiles[indexPath.section]
-        
+        cell.delegate = self
         return cell
     }
+    
+
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let y                   = scrollView.contentOffset.y
@@ -258,5 +260,13 @@ extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
             }
             
         }
+    }
+}
+
+extension HomeViewController: TNHomeSectionCellDelegate{
+    func didSelectTile(_ tile: any OverviewPresentable) {
+        let detailVC = MediaDetailViewController()
+//        detailVC.configure(with: tile)
+        navigationController?.pushViewController(detailVC, animated: true)
     }
 }

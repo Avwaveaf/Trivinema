@@ -15,6 +15,8 @@ enum OverviewKey: String{
     case tvSeriesOverviewAT     = "tvSeriesOverviewAT"
     case tvSeriesOverviewTR     = "tvSeriesOverviewTR"
     case artistsOverview        = "artistsOverview"
+    case movieVideo             = "movieVideo"
+    case seriesVideo            = "seriesVideo"
 }
 
 class NetworkManager {

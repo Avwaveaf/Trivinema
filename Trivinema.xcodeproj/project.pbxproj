@@ -8,11 +8,17 @@
 
 /* Begin PBXBuildFile section */
 		8B590CF52DBCD16E009C5A35 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 8B590CF42DBCD16A009C5A35 /* .gitignore */; };
+		8BEA98772DC0A78E00968EAC /* YTPlayerView-iframe-player.html in Resources */ = {isa = PBXBuildFile; fileRef = 8BEA98732DC0A78E00968EAC /* YTPlayerView-iframe-player.html */; };
+		8BEA98782DC0A78E00968EAC /* YTPlayerView 2.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BEA98762DC0A78E00968EAC /* YTPlayerView 2.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		8B590C8B2DBB61A0009C5A35 /* Trivinema.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Trivinema.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8B590CF42DBCD16A009C5A35 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		8BEA98732DC0A78E00968EAC /* YTPlayerView-iframe-player.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = "YTPlayerView-iframe-player.html"; sourceTree = "<group>"; };
+		8BEA98752DC0A78E00968EAC /* YTPlayerView 2.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "YTPlayerView 2.h"; sourceTree = "<group>"; };
+		8BEA98762DC0A78E00968EAC /* YTPlayerView 2.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "YTPlayerView 2.m"; sourceTree = "<group>"; };
+		8BEA98792DC0A79100968EAC /* Trivinema-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Trivinema-Bridging-Header.h"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -50,9 +56,13 @@
 		8B590C822DBB61A0009C5A35 = {
 			isa = PBXGroup;
 			children = (
+				8BEA98742DC0A78E00968EAC /* Assets 2 */,
+				8BEA98752DC0A78E00968EAC /* YTPlayerView 2.h */,
+				8BEA98762DC0A78E00968EAC /* YTPlayerView 2.m */,
 				8B590C8D2DBB61A0009C5A35 /* Trivinema */,
 				8B590C8C2DBB61A0009C5A35 /* Products */,
 				8B590CF42DBCD16A009C5A35 /* .gitignore */,
+				8BEA98792DC0A79100968EAC /* Trivinema-Bridging-Header.h */,
 			);
 			sourceTree = "<group>";
 		};
@@ -62,6 +72,14 @@
 				8B590C8B2DBB61A0009C5A35 /* Trivinema.app */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		8BEA98742DC0A78E00968EAC /* Assets 2 */ = {
+			isa = PBXGroup;
+			children = (
+				8BEA98732DC0A78E00968EAC /* YTPlayerView-iframe-player.html */,
+			);
+			path = "Assets 2";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -101,6 +119,7 @@
 				TargetAttributes = {
 					8B590C8A2DBB61A0009C5A35 = {
 						CreatedOnToolsVersion = 16.2;
+						LastSwiftMigration = 1620;
 					};
 				};
 			};
@@ -128,6 +147,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8BEA98772DC0A78E00968EAC /* YTPlayerView-iframe-player.html in Resources */,
 				8B590CF52DBCD16E009C5A35 /* .gitignore in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -139,6 +159,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8BEA98782DC0A78E00968EAC /* YTPlayerView 2.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -152,6 +173,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = NMNMAV47Y2;
@@ -170,6 +192,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.avwaveaf.Trivinema;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "Trivinema-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -182,6 +206,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = NMNMAV47Y2;
@@ -200,6 +225,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.avwaveaf.Trivinema;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "Trivinema-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

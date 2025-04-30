@@ -15,4 +15,5 @@ enum SFSymbols: String{
     case info       = "info.circle"
     case play       = "play.fill"
     case add        = "plus"
+    case close      = "xmark.square"
 }
