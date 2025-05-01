@@ -8,6 +8,12 @@
 import Foundation
 
 struct MoviewOverview: Codable, Hashable, OverviewPresentable{
+    var categoryString: String {
+        self.genreIds.map {
+            MovieGenre.from(id: $0)
+        }.joined(separator: " ・ ")
+    }
+    
     let adult: Bool
     let backdropPath: String?
     let genreIds: [Int]
