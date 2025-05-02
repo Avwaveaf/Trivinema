@@ -27,4 +27,9 @@ extension NetworkManager {
         let endpoint = "\(baseUrl)/movie/\(id)?language=en-US"
         performGETRequest(urlString: endpoint, key: .movieDetail, completion: completed)
     }
+    
+    func getMovieCast(id:Int, completed: @escaping (Result<CastResponse, AFError>)-> Void){
+        let endpoint = "\(baseUrl)/movie/\(id)/credits?language=en-US"
+        performGETRequest(urlString: endpoint, key: .movideCast, completion: completed)
+    }
 }
