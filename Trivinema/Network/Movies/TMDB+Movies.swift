@@ -22,4 +22,9 @@ extension NetworkManager {
         let endpoint = "\(baseUrl)/movie/upcoming?language=en-US&page=\(page)"
         performGETRequest(urlString: endpoint, key: .movieOverviewUP, completion: completed)
     }
+    
+    func getDetailMovie(id: Int, completed: @escaping (Result<MovieDetail, AFError>)-> Void){
+        let endpoint = "\(baseUrl)/movie/\(id)?language=en-US"
+        performGETRequest(urlString: endpoint, key: .movieDetail, completion: completed)
+    }
 }

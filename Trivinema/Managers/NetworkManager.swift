@@ -11,10 +11,13 @@ enum OverviewKey: String{
     case movieOverviewNP        = "moviewOverviewNP"
     case movieOverviewPP        = "moviewOverviewPP"
     case movieOverviewUP        = "moviewOverviewUP"
+    case movieDetail            = "movieDetail"
     case tvSeriesOverviewPP     = "tvSeriesOverviewPP"
     case tvSeriesOverviewAT     = "tvSeriesOverviewAT"
     case tvSeriesOverviewTR     = "tvSeriesOverviewTR"
+    case tvSeriesDetail         = "tvSeriesDetail"
     case artistsOverview        = "artistsOverview"
+    case artistsDetail          = "artistsDetail"
     case movieVideo             = "movieVideo"
     case seriesVideo            = "seriesVideo"
 }

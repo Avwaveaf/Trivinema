@@ -266,7 +266,7 @@ extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
 extension HomeViewController: TNHomeSectionCellDelegate{
     func didSelectTile(_ tile: any OverviewPresentable) {
         let detailVC = MediaDetailViewController()
-        detailVC.overview = tile
+        detailVC.configure(with: tile)
         navigationController?.pushViewController(detailVC, animated: true)
     }
 }
