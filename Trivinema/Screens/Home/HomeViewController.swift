@@ -265,8 +265,21 @@ extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
 
 extension HomeViewController: TNHomeSectionCellDelegate{
     func didSelectTile(_ tile: any OverviewPresentable) {
-        let detailVC = MediaDetailViewController()
-        detailVC.configure(with: tile)
-        navigationController?.pushViewController(detailVC, animated: true)
+        var activeVC: any DetailPresentationProtocol
+        
+        if let movie = tile as? MoviewOverview {
+            activeVC = MediaDetailViewController()
+            activeVC.configure(with: movie)
+        } else if let tv = tile as? TVSeriesOverview {
+            activeVC = MediaDetailViewController()
+            activeVC.configure(with: tv)
+        } else if let person = tile as? ArtistsOverview {
+            activeVC = PersonDetailsViewController()
+            activeVC.configure(with: person)
+        } else {
+            return
+        }
+        
+        navigationController?.pushViewController(activeVC as! UIViewController, animated: true)
     }
 }

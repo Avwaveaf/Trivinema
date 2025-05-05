@@ -20,6 +20,7 @@ enum OverviewKey: String{
     case tvSeriescast           = "tvSeriescast"
     case artistsOverview        = "artistsOverview"
     case artistsDetail          = "artistsDetail"
+    case artistsCredit          = "artistsCredit"
     case movieVideo             = "movieVideo"
     case seriesVideo            = "seriesVideo"
 }
@@ -94,7 +95,7 @@ class NetworkManager {
                     let decoder = JSONDecoder()
                     decoder.keyDecodingStrategy = .convertFromSnakeCase
                     let decoded = try decoder.decode(T.self, from: data)
-                    
+                
                     // MARK: -Handle Cache [SAVE]-
                     self.cacheOverviewToDisk(for: key.rawValue, overviewData: decoded)
                     
