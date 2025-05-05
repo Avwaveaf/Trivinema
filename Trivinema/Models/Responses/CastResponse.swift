@@ -12,23 +12,12 @@ struct CastResponse: Codable{
     let cast : [ArtistsOverview]
 }
 
-struct CastPersonResponse: Codable {
-    let cast : [CastCredit]
+struct CastPersonResponseMovie: Codable {
+    let id   : Int
+    let cast : [MoviewOverview]
 }
 
-
-struct CastCredit: Codable, Hashable {
-    let id: Int
-    let title: String
-    let originalTitle: String
-    let character: String
-    let posterPath: String?
-    let backdropPath: String?
-    let genreIds: [Int]
-    let overview: String
-    let popularity: Double
-    let voteAverage: Double
-    let creditId: String
-    let order: Int
-    let mediaType: String
+struct CastPersonResponseTv: Codable {
+    let id   : Int
+    let cast : [TVSeriesOverview]
 }

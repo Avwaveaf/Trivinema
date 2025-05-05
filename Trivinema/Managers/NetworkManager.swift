@@ -20,7 +20,8 @@ enum OverviewKey: String{
     case tvSeriescast           = "tvSeriescast"
     case artistsOverview        = "artistsOverview"
     case artistsDetail          = "artistsDetail"
-    case artistsCredit          = "artistsCredit"
+    case artistsMovieCredit     = "artistsMovieCredit"
+    case artistsTVCredit        = "artistsTVCredit"
     case movieVideo             = "movieVideo"
     case seriesVideo            = "seriesVideo"
 }
@@ -90,6 +91,7 @@ class NetworkManager {
                     completion(.failure(.emptyDataOrJSON))
                     return
                 }
+                
                 
                 do {
                     let decoder = JSONDecoder()
