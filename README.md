@@ -1,4 +1,4 @@
-# 🎬 Trivinema (Programmatic UI Project)
+# 🎬 Trivinema (Programmatic UI Project) V.1.0.0
 
 **Trivinema** is a modern movie browsing iOS application that lets users explore trending, top-rated, and upcoming movies with a clean and intuitive interface. Dive into detailed movie info, discover cast and crew, and enjoy a smooth, dynamic user experience built entirely with UIKit.
 
@@ -18,6 +18,7 @@
 - **TMDb API** for movie data
 - **Reusable UI Components** for consistent layout
 - **Auto Layout** for responsive design
+- **Prerequisite** IOS Min 13.0+ 
 
 ## 📸 Screenshots
 
