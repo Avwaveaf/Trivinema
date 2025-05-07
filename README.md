@@ -11,6 +11,14 @@
 - 📀 Data local File Caching & Auto update data daily
 - ⚡ Fast image loading and caching for optimal performance
 
+## ✨ Upcoming Features
+
+- Push Notifications for Latest release movie/tv series
+- Authentication from TMDB Api
+- Watchlist system with push notifications daily
+- User profile configuration
+- Reaction & comments on each Movie/TV Series
+
 ## 🛠️ Technologies Used
 
 - **Swift** & **UIKit** (Programmatic UI)
