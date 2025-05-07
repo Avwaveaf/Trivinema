@@ -13,6 +13,11 @@ extension NetworkManager {
         performGETRequest(urlString: endpoint, key: .movieOverviewNP, completion: completed)
     }
     
+    func getMovieRecommendation(page: Int, id: Int, completed: @escaping (Result<MovieResponse, AFError>)-> Void) {
+        let endpoint = "\(baseUrl)/movie/\(id)/recommendations?language=en-US&page=\(page)"
+        performGETRequest(urlString: endpoint, key: .movieRecommendation, completion: completed)
+    }
+    
     func getPopular(page: Int, completed: @escaping (Result<MovieResponse, AFError>) -> Void){
         let endpoint = "\(baseUrl)/movie/popular?language=en-US&page=\(page)"
         performGETRequest(urlString: endpoint, key: .movieOverviewPP, completion: completed)

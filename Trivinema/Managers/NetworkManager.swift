@@ -7,10 +7,12 @@
 
 import UIKit
 
+/// Key Identifier for caching to local file cache system
 enum OverviewKey: String{
     case movieOverviewNP        = "moviewOverviewNP"
     case movieOverviewPP        = "moviewOverviewPP"
     case movieOverviewUP        = "moviewOverviewUP"
+    case movieRecommendation    = "movieRecommendations"
     case movieDetail            = "movieDetail"
     case movideCast             = "movieCast"
     case tvSeriesOverviewPP     = "tvSeriesOverviewPP"
@@ -18,6 +20,7 @@ enum OverviewKey: String{
     case tvSeriesOverviewTR     = "tvSeriesOverviewTR"
     case tvSeriesDetail         = "tvSeriesDetail"
     case tvSeriescast           = "tvSeriescast"
+    case tvSeriesRecommendation = "tvSeriesRecommendation"
     case artistsOverview        = "artistsOverview"
     case artistsDetail          = "artistsDetail"
     case artistsMovieCredit     = "artistsMovieCredit"
