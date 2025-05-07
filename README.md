@@ -30,17 +30,9 @@
 
 ## 📸 Screenshots
 
-### 🏠 Home Screen  
-<img src="https://github.com/Avwaveaf/screenshots/blob/main/Trivinema_Home.png" alt="Trivinema Home" width="250"/>
-
-### 🎞️ Movies List  
-<img src="https://github.com/Avwaveaf/screenshots/blob/main/Trivinema_Home_2.png" alt="Trivinema Home" width="250"/>
-
-### 📽️ Movie Details  
-<img src="https://github.com/Avwaveaf/screenshots/blob/main/Trivinema_Movie_Detail.png" alt="Trivinema Movie Detail" width="250"/>
-
-### 🧑 Actor Details  
-<img src="https://github.com/Avwaveaf/screenshots/blob/main/Trivinema_Person_Detail.png" alt="Trivinema Person Detail" width="250"/>
+| 🏠 Home Screen | 🎞️ Movies List | 📽️ Movie Details | 🧑 Actor Details |
+|----------------|----------------|------------------|------------------|
+| <img src="https://github.com/Avwaveaf/screenshots/blob/main/Trivinema_Home.png" alt="Trivinema Home" width="250"/> | <img src="https://github.com/Avwaveaf/screenshots/blob/main/Trivinema_Home_2.png" alt="Trivinema Home 2" width="250"/> | <img src="https://github.com/Avwaveaf/screenshots/blob/main/Trivinema_Movie_Detail.png" alt="Trivinema Movie Detail" width="250"/> | <img src="https://github.com/Avwaveaf/screenshots/blob/main/Trivinema_Person_Detail.png" alt="Trivinema Person Detail" width="250"/> |
 
 ## 🚀 Getting Started
 
