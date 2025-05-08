@@ -25,7 +25,8 @@ class AFTabBarViewController: UITabBarController {
         self.tabBar.tintColor       = .systemRed
         self.viewControllers        = [
             createHomeNavController(), createMoviesNavController(),
-            createTVNavController(), createActorsNavController()
+            createTVNavController(), createActorsNavController(),
+            createProfileNavController()
         ]
     }
  
@@ -60,6 +61,13 @@ class AFTabBarViewController: UITabBarController {
         actorViewController.tabBarItem = UITabBarItem(title: "Artists", image: icon, tag: 3)
         
         return UINavigationController(rootViewController: actorViewController)
+    }
+    
+    private func createProfileNavController() -> UINavigationController {
+        let profileViewController    = ProfileViewController()
+        let icon                     = AFSfSymbolImageView.makeImage(symbol: .profile)
+        profileViewController.tabBarItem = UITabBarItem(title: "Profile", image: icon, tag: 4)
+        return UINavigationController(rootViewController: profileViewController)
     }
 }
 

@@ -16,4 +16,5 @@ enum SFSymbols: String{
     case play       = "play.fill"
     case add        = "plus"
     case close      = "xmark.square"
+    case profile    = "person.fill"
 }
